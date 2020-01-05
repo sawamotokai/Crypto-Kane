@@ -1,0 +1,17 @@
+{
+	"name": "generalBlockChain",
+	"version": "1.0.0",
+	"description": "",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.17.1",
+		"js-sha256": "^0.9.0",
+		"json-stable-stringify": "^1.0.1"
+	}
+}
