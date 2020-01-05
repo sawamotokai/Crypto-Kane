@@ -41,6 +41,35 @@ class Kane {
 		let url = new Url(address);
 		this.nodes.add(url.host);
 	}
+
+	async replaceChain() {
+		let network = this.nodes;
+		let longestChain = null;
+		let maxLength = this.chain.length;
+		await network.forEach((node) => {
+			let length;
+			let chain;
+			axios
+				.get(`http://${node}/get_chain`)
+				.then((res) => {
+					length = res.data.length;
+					chain = res.data.chain;
+					if (length > maxLength && this.isChainValid(chain)) {
+						maxLength = length;
+						longestChain = chain;
+					}
+				})
+				.catch((err) => {
+					console.error(err);
+				});
+		});
+		if (longestChain) {
+			this.chain = longestChain;
+			return true;
+		}
+		return false;
+	}
+
 	// EFFECTS: Returns the last block in the chain
 	get lastBlock() {
 		return this.chain.slice(-1)[0];
