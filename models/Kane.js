@@ -1,7 +1,7 @@
 const sha256 = require('js-sha256').sha256;
 const stringify = require('json-stable-stringify');
 
-class BlockChain {
+class Kane {
 	constructor() {
 		this.chain = [];
 		this.create_block(1, '0');
@@ -71,4 +71,4 @@ class BlockChain {
 	}
 }
 
-module.exports = BlockChain;
+module.exports = Kane;

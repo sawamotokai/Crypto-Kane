@@ -1,30 +1,30 @@
 const app = require('express')();
-const BlockChain = require('./models/BlockChain');
+const Kane = require('./models/Kane');
 
-const BC = new BlockChain();
+const kane = new Kane();
 
 app.get('/', (req, res) => {
-	res.send(`${BC.findNonce(2)}`);
+	res.send(`${kane.findNonce(4)}`);
 });
 
 app.get('/mine_block', (req, res) => {
-	let prev_block = BC.last_block;
-	let new_nonce = BC.findNonce(prev_block.nonce);
-	let block = JSON.parse(BC.create_block(new_nonce, BC.hash(prev_block)));
+	let prev_block = kane.last_block;
+	let new_nonce = kane.findNonce(prev_block.nonce);
+	let block = JSON.parse(kane.create_block(new_nonce, kane.hash(prev_block)));
 	console.log(block);
 	res.status(200).json(block);
 });
 
 app.get('/get_chain', (req, res) => {
 	let response = {
-		chain: BC.chain,
-		length: BC.chain.length
+		chain: kane.chain,
+		length: kane.chain.length
 	};
 	res.status(200).json(response);
 });
 
 app.get('/is_valid_chain', (req, res) => {
-	let isValid = BC.isChainValid(BC.chain);
+	let isValid = kane.isChainValid(kane.chain);
 	let respond = {
 		message: isValid ? 'Good. Blockchain is valid' : 'Bad. Blockchain is invalid'
 	};
