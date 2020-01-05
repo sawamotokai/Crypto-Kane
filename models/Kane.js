@@ -1,6 +1,7 @@
 const sha256 = require('js-sha256').sha256;
 const stringify = require('json-stable-stringify');
-var Url = require('url-parse');
+const Url = require('url-parse');
+const axios = require('axios');
 
 class Kane {
 	constructor() {
