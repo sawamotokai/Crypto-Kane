@@ -8,9 +8,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/mine_block', (req, res) => {
-	let prev_block = kane.last_block;
+	let prev_block = kane.lastBlock;
 	let new_nonce = kane.findNonce(prev_block.nonce);
-	let block = JSON.parse(kane.create_block(new_nonce, kane.hash(prev_block)));
+	let block = JSON.parse(kane.createBlock(new_nonce, kane.hash(prev_block)));
 	console.log(block);
 	res.status(200).json(block);
 });
