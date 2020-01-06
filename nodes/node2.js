@@ -1,5 +1,5 @@
 const app = require('express')();
-const Kane = require('./models/Kane');
+const Kane = require('../models/Kane');
 const uuid4 = require('uuid4');
 const bodyParser = require('body-parser');
 
