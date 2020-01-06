@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 app.get('/mine_block', (req, res) => {
 	let prev_block = kane.lastBlock;
 	let new_nonce = kane.findNonce(prev_block.nonce);
-	kane.createTransaction(nodeAddress, 'Kai', 10);
+	kane.createTransaction(nodeAddress, 'Shin', 10);
 	let block = JSON.parse(kane.createBlock(new_nonce, kane.hash(prev_block)));
 	console.log(block);
 	res.status(200).json(block);
@@ -38,12 +38,18 @@ app.get('/is_valid_chain', (req, res) => {
 });
 
 app.get('/replace_chain', (req, res) => {
-	let wasReplaced = kane.replaceChain();
-	let respond = {
-		message: wasReplaced ? 'Chain was replaced by the longest.' : 'This chain is the largest.',
-		newChian: kane.chain
-	};
-	return res.status(200).json(respond);
+	let wasReplaced = kane
+		.replaceChain()
+		.then(() => {
+			let respond = {
+				message: wasReplaced ? 'Chain was replaced by the longest.' : 'This chain is the largest.',
+				newChain: kane.chain
+			};
+			return res.status(200).json(respond);
+		})
+		.catch((err) => {
+			console.error(err);
+		});
 });
 
 app.post('/add_transaction', (req, res) => {
@@ -68,12 +74,12 @@ app.post('/connect_nodes', (req, res) => {
 	});
 	let response = {
 		message: 'All the nodes are now connected. Kane contains following nodes: ',
-		nodes: kane.nodes
+		nodes: [ ...kane.nodes ]
 	};
 	return res.status(201).json(response);
 });
 
-const port = 3000;
+const port = 3002;
 app.listen(port, () => {
 	console.log(`Server started on ${port}`);
 });
