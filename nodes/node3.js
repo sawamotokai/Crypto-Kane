@@ -1,9 +1,9 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
 const Kane = require('../models/Kane');
 const uuid4 = require('uuid4');
-const bodyParser = require('body-parser');
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
 const kane = new Kane();
 const nodeAddress = uuid4().replace(/-/g, ''); // address of node on port 3000
@@ -41,7 +41,7 @@ app.get('/replace_chain', (req, res) => {
 	let wasReplaced = kane.replaceChain();
 	let respond = {
 		message: wasReplaced ? 'Chain was replaced by the longest.' : 'This chain is the largest.',
-		newChian: kane.chain
+		newChain: kane.chain
 	};
 	return res.status(200).json(respond);
 });
@@ -68,8 +68,9 @@ app.post('/connect_nodes', (req, res) => {
 	});
 	let response = {
 		message: 'All the nodes are now connected. Kane contains following nodes: ',
-		nodes: kane.nodes
+		nodes: [ ...kane.nodes ]
 	};
+	console.log(kane.nodes);
 	return res.status(201).json(response);
 });
 

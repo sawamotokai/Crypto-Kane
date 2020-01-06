@@ -1,9 +1,9 @@
-const app = require('express')();
-const Kane = require('./models/Kane');
+const express = require('express');
+const app = express();
+const Kane = require('../models/Kane');
 const uuid4 = require('uuid4');
-const bodyParser = require('body-parser');
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
 const kane = new Kane();
 const nodeAddress = uuid4().replace(/-/g, ''); // address of node on port 3000
