@@ -1,3 +1,7 @@
 {
+<<<<<<< HEAD
 	"nodes": [ "http://localhost:3000/", "http://localhost:3001/", "http://localhost:3002/" ]
+=======
+	"nodes": [ "http://localhost:3001/", "http://localhost:3002/", "http://localhost:3003/" ]
+>>>>>>> 60f4c78efc28e3fdb7e19a0ed4e562a1955f994c
 }

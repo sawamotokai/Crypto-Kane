@@ -42,27 +42,23 @@ class Kane {
 		this.nodes.add(url.host);
 	}
 
+	// REQUIERS: connect_nodes endpoint has been hit
 	async replaceChain() {
 		let network = this.nodes;
-		let longestChain = null;
-		let maxLength = this.chain.length;
-		await network.forEach((node) => {
-			let length;
-			let chain;
-			axios
-				.get(`http://${node}/get_chain`)
-				.then((res) => {
-					length = res.data.length;
-					chain = res.data.chain;
-					if (length > maxLength && this.isChainValid(chain)) {
-						maxLength = length;
-						longestChain = chain;
-					}
-				})
-				.catch((err) => {
-					console.error(err);
-				});
+		let lengths = [];
+		network.forEach((node) => {
+			lengths.push(axios.get(`http://${node}/get_chain`));
 		});
+		lengths = await Promise.all(lengths);
+		let maxLength = this.chain.length;
+		let longestChain = null;
+		lengths.forEach((res) => {
+			if (res.data.length > maxLength && this.isChainValid(res.data.chain)) {
+				maxLength = res.data.length;
+				longestChain = res.data.chain;
+			}
+		});
+		console.log('longest chain is :', longestChain);
 		if (longestChain) {
 			this.chain = longestChain;
 			return true;
