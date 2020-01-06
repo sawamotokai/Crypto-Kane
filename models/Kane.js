@@ -58,7 +58,6 @@ class Kane {
 				longestChain = res.data.chain;
 			}
 		});
-		console.log('longest chain is :', longestChain);
 		if (longestChain) {
 			this.chain = longestChain;
 			return true;
