@@ -38,13 +38,18 @@ app.get('/is_valid_chain', (req, res) => {
 });
 
 app.get('/replace_chain', (req, res) => {
-	let wasReplaced = kane.replaceChain();
-	console.log(wasReplaced);
-	let respond = {
-		message: wasReplaced ? 'Chain was replaced by the longest.' : 'This chain is the largest.',
-		newChain: kane.chain
-	};
-	return res.status(200).json(respond);
+	let wasReplaced = kane
+		.replaceChain()
+		.then(() => {
+			let respond = {
+				message: wasReplaced ? 'Chain was replaced by the longest.' : 'This chain is the largest.',
+				newChain: kane.chain
+			};
+			return res.status(200).json(respond);
+		})
+		.catch((err) => {
+			console.error(err);
+		});
 });
 
 app.post('/add_transaction', (req, res) => {

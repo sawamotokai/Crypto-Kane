@@ -84,7 +84,6 @@ class Kane {
 			lengths.push(axios.get(`http://${node}/get_chain`));
 		});
 		lengths = await Promise.all(lengths);
-
 		let maxLength = this.chain.length;
 		let longestChain = null;
 		lengths.forEach((res) => {
