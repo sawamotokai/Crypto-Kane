@@ -38,9 +38,10 @@ app.get('/is_valid_chain', (req, res) => {
 });
 
 app.get('/replace_chain', (req, res) => {
-	let isValid = kane.isChainValid(kane.chain);
+	let wasReplaced = kane.replaceChain();
 	let respond = {
-		message: isValid ? 'Good. Blockchain is valid' : 'Bad. Blockchain is invalid'
+		message: wasReplaced ? 'Chain was replaced by the longest.' : 'This chain is the largest.',
+		newChian: kane.chain
 	};
 	return res.status(200).json(respond);
 });
