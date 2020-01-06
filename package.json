@@ -2,7 +2,7 @@
 	"name": "CryptoKane",
 	"version": "1.0.0",
 	"description": "",
-	"main": "app.js",
+	"main": "node1.js",
 	"scripts": {},
 	"keywords": [],
 	"author": "",
