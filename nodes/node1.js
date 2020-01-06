@@ -2,7 +2,6 @@ const app = require('express')();
 const Kane = require('../models/Kane');
 const uuid4 = require('uuid4');
 const bodyParser = require('body-parser');
-
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const kane = new Kane();
@@ -37,11 +36,40 @@ app.get('/is_valid_chain', (req, res) => {
 	return res.status(200).json(respond);
 });
 
+app.get('/replace_chain', (req, res) => {
+	let wasReplaced = kane.replaceChain();
+	let respond = {
+		message: wasReplaced ? 'Chain was replaced by the longest.' : 'This chain is the largest.',
+		newChian: kane.chain
+	};
+	return res.status(200).json(respond);
+});
+
 app.post('/add_transaction', (req, res) => {
 	const { sender, receiver, amount } = req.body;
-	if (!sender || !receiver || !amount) return res.status(400).json({ message: 'Some param is missing.' });
-	let targetBlockIdx = kane.createTransaction(sender, receiver, aomunt);
+	if (!sender || !receiver || !amount) {
+		console.log(req);
+		console.log(sender, receiver, amount);
+		return res.status(400).json({
+			message: 'Some param is missing!!'
+		});
+	}
+
+	let targetBlockIdx = kane.createTransaction(sender, receiver, amount);
 	return res.status(201).json({ message: `Transaction to be added to Block with index: ${targetBlockIdx}` });
+});
+
+app.post('/connect_nodes', (req, res) => {
+	const { nodes } = req.body;
+	if (!nodes) return res.status(401).json({ message: 'Nodes is empty' });
+	nodes.forEach((node) => {
+		kane.addNode(node);
+	});
+	let response = {
+		message: 'All the nodes are now connected. Kane contains following nodes: ',
+		nodes: kane.nodes
+	};
+	return res.status(201).json(response);
 });
 
 const port = 3001;
