@@ -1,7 +1,7 @@
 # General-Block-Chain
 # Crypto-Kane
 
-This app can demonstrate Blockchain, built on a Peer to Peer distributed network.
+This app can simulate Blockchain, built on a Peer to Peer distributed network.
 
 # To get starget
 Clone the repo.
@@ -26,8 +26,8 @@ with JSON raw body data of:
 }
 respecticely.
 
-Now, all three nodes on the P2P distributed network is connected.
-You can send get request to the following endpoints:
+Now that all three nodes on the P2P distributed network is connected,
+you can send get request to the following endpoints:
 	"/mine_block" to mine Kane (my sudo cryptocurrency),
 	"/get_chain" to see the info about the chain the current node is holding,
 	"/replace_chain" to get in sync with the other node which holds the longest blockchain (pretending concensus).
