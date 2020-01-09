@@ -42,12 +42,12 @@ you can send get request to the following endpoints:
 	
 You can send post request to the following endpoints:
 	*"/add_transaction" with the following data to create a new transaction between people:
-	```JavaScript
-	{
-		"sender": "sender's name",
-		"receiver": "receiver's name",
-		"amount": amount (int)
-	}
-	```
+```JavaScript
+{
+	"sender": "sender's name",
+	"receiver": "receiver's name",
+	"amount": number
+}
+```
 	This transaction will then be added to the mempool.
 	
