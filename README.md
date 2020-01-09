@@ -3,7 +3,7 @@ This app can simulate Blockchain, built on a Peer to Peer distributed network.
 
 # To get starget
 Clone the repo.
-
+### Connect Nodes
 Open up 3 terminals and run the command: 
 ```
 		node nodes/node1.js
@@ -53,3 +53,8 @@ You can send post request to the following endpoints:
 ```
 This transaction will then be added to the mempool.
 	
+## How to increase nodes
+1. Duplicate any of the node files and name it node4.js, for example.
+2. Change the port variable to a new number which is not taken already (e.g. 3004).
+3. Open up a new terminal and run the command `node nodes/node4.js` (example).
+4. Connect all the nodes following the connect nodes section above. (Don't for get to modify the JSON query appropriately)
