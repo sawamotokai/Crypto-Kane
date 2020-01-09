@@ -36,9 +36,9 @@ respecticely.
 
 Now that all three nodes on the P2P distributed network is connected,
 you can send get request to the following endpoints:
-	*"/mine_block" to mine Kane (my sudo cryptocurrency),
-	*"/get_chain" to see the info about the chain the current node is holding,
-	*"/replace_chain" to get in sync with the other node which holds the longest blockchain (pretending concensus). The app is going to send API request to all other nodes and adopts the longest chain of all.
+* "/mine_block" to mine Kane (my sudo cryptocurrency),
+* "/get_chain" to see the info about the chain the current node is holding,
+* "/replace_chain" to get in sync with the other node which holds the longest blockchain (pretending concensus). The app is going to send API request to all other nodes and adopts the longest chain of all.
 	
 You can send post request to the following endpoints:
 	*"/add_transaction" with the following data to create a new transaction between people:
@@ -49,5 +49,5 @@ You can send post request to the following endpoints:
 	"amount": number
 }
 ```
-	This transaction will then be added to the mempool.
+This transaction will then be added to the mempool.
 	
