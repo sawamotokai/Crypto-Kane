@@ -7,13 +7,19 @@ This app can simulate Blockchain, built on a Peer to Peer distributed network.
 Clone the repo.
 
 Open up 3 terminals and run the command: 
+```
 		node nodes/node1.js
 		node nodes/node2.js
 		node nodes/node3.js
+		```
 in each of the terminals.
 
-On Postman, send post request to "http://localhost:3001/connect_nodes", "http://localhost:3002/connect_nodes" and  "http://localhost:3003/connect_nodes"
-with JSON raw body data of: 
+On Postman, send post request to 
+1. "http://localhost:3001/connect_nodes"
+2. "http://localhost:3002/connect_nodes"
+3. "http://localhost:3003/connect_nodes"
+with JSON raw body data of:
+```
 {
 	"nodes": [ "http://localhost:3002/", "http://localhost:3003/" ]
 }
@@ -24,6 +30,7 @@ with JSON raw body data of:
 {
 	"nodes": [ "http://localhost:3001/", "http://localhost:3002/" ]
 }
+```
 respecticely.
 
 Now that all three nodes on the P2P distributed network is connected,
